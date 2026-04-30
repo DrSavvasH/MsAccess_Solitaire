@@ -1,0 +1,2963 @@
+'Latest (27-4-22 10:56)
+Option Compare Database
+Option Explicit
+Public XPos As String
+Public Ypos As String
+Public mseDown As Boolean
+Public ButtonX As Object
+Public fontz As Integer
+
+Private Sub c1_Click()
+MsgBox c1.Top & " " & c1.Left
+End Sub
+
+Private Sub c1_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 1
+If Hidden = -1 Then
+c1.FontName = "Playing Cards"
+c1.Caption = cardFont
+c1.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c1.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c1.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "H" Then c1.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c1.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c1.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c1.FontName = "Greek Column"
+    c1.Caption = Chr(87)
+    c1.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c1_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c1_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c1
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+    
+' Efforts to bring control in front of others (impossible in MS Access)
+'c1.zorder (0)
+
+'DoCmd.RunCommand acCmdDesignView
+'c1.InSelection = True
+'DoCmd.RunCommand acCmdSendToBack '(or docmd.runcommand acCmdBringToFront)
+'DoCmd.RunCommand acCmdFormView
+
+'c1.TabIndex = 0
+End Sub
+
+Private Sub c1_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+   mseDown = False
+End Sub
+
+Private Sub c10_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 10
+If Hidden = -1 Then
+c10.FontName = "Playing Cards"
+c10.Caption = cardFont
+c10.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c10.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c10.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c10.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c10.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c10.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c10.FontName = "Greek Column"
+    c10.Caption = Chr(87)
+    c10.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c10_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c10_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c10
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c10_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c11_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 11
+If Hidden = -1 Then
+c11.FontName = "Playing Cards"
+c11.Caption = cardFont
+c11.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c11.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c11.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c11.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c11.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c11.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c11.FontName = "Greek Column"
+    c11.Caption = Chr(87)
+    c11.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c11_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c11_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c11
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c11_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c12_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 12
+If Hidden = -1 Then
+c12.FontName = "Playing Cards"
+c12.Caption = cardFont
+c12.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c12.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c12.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c12.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c12.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c12.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c12.FontName = "Greek Column"
+    c12.Caption = Chr(87)
+    c12.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c12_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c12_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c12
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c12_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c13_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 13
+If Hidden = -1 Then
+c13.FontName = "Playing Cards"
+c13.Caption = cardFont
+c13.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c13.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c13.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c13.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c13.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c13.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c13.FontName = "Greek Column"
+    c13.Caption = Chr(87)
+    c13.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c13_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c13_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c13
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c13_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c14_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 14
+If Hidden = -1 Then
+c14.FontName = "Playing Cards"
+c14.Caption = cardFont
+c14.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c14.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c14.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c14.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c14.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c14.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c14.FontName = "Greek Column"
+    c14.Caption = Chr(87)
+    c14.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c14_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c14_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c14
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c14_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c15_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 15
+If Hidden = -1 Then
+c15.FontName = "Playing Cards"
+c15.Caption = cardFont
+c15.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c15.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c15.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c15.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c15.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c15.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c15.FontName = "Greek Column"
+    c15.Caption = Chr(87)
+    c15.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c15_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c15_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c15
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c15_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c16_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 16
+If Hidden = -1 Then
+c16.FontName = "Playing Cards"
+c16.Caption = cardFont
+c16.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c16.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c16.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c16.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c16.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c16.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c16.FontName = "Greek Column"
+    c16.Caption = Chr(87)
+    c16.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c16_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c16_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c16
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c16_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c17_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 17
+If Hidden = -1 Then
+c17.FontName = "Playing Cards"
+c17.Caption = cardFont
+c17.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c17.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c17.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c17.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c17.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c17.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c17.FontName = "Greek Column"
+    c17.Caption = Chr(87)
+    c17.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c17_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c17_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c17
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c17_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c18_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 18
+If Hidden = -1 Then
+c18.FontName = "Playing Cards"
+c18.Caption = cardFont
+c18.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c18.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c18.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c18.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c18.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c18.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c18.FontName = "Greek Column"
+    c18.Caption = Chr(87)
+    c18.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c18_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c18_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c18
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c18_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c19_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 19
+If Hidden = -1 Then
+c19.FontName = "Playing Cards"
+c19.Caption = cardFont
+c19.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c19.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c19.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c19.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c19.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c19.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c19.FontName = "Greek Column"
+    c19.Caption = Chr(87)
+    c19.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c19_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c19_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c19
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c19_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c2_Click()
+
+End Sub
+
+Private Sub c2_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 2
+If Hidden = -1 Then
+c2.FontName = "Playing Cards"
+c2.Caption = cardFont
+c2.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c2.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c2.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c2.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c2.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c2.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c2.FontName = "Greek Column"
+    c2.Caption = Chr(87)
+    c2.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c2_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c2_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c2
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c2_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c20_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 20
+If Hidden = -1 Then
+c20.FontName = "Playing Cards"
+c20.Caption = cardFont
+c20.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c20.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c20.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c20.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c20.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c20.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c20.FontName = "Greek Column"
+    c20.Caption = Chr(87)
+    c20.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c20_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c20_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c20
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c20_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c21_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 21
+If Hidden = -1 Then
+c21.FontName = "Playing Cards"
+c21.Caption = cardFont
+c21.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c21.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c21.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c21.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c21.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c21.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c21.FontName = "Greek Column"
+    c21.Caption = Chr(87)
+    c21.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c21_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c21_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c21
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c21_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c22_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 22
+If Hidden = -1 Then
+c22.FontName = "Playing Cards"
+c22.Caption = cardFont
+c22.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c22.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c22.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c22.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c22.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c22.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c22.FontName = "Greek Column"
+    c22.Caption = Chr(87)
+    c22.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c22_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c22_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c22
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c22_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c23_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 23
+If Hidden = -1 Then
+c23.FontName = "Playing Cards"
+c23.Caption = cardFont
+c23.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c23.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c23.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c23.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c23.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c23.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c23.FontName = "Greek Column"
+    c23.Caption = Chr(87)
+    c23.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c23_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c23_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c23
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c23_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c24_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 24
+If Hidden = -1 Then
+c24.FontName = "Playing Cards"
+c24.Caption = cardFont
+c24.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c24.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c24.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c24.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c24.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c24.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c24.FontName = "Greek Column"
+    c24.Caption = Chr(87)
+    c24.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c24_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c24_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c24
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c24_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c25_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 25
+If Hidden = -1 Then
+c25.FontName = "Playing Cards"
+c25.Caption = cardFont
+c25.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c25.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c25.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c25.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c25.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c25.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c25.FontName = "Greek Column"
+    c25.Caption = Chr(87)
+    c25.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c25_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c25_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c25
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c25_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c26_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 26
+If Hidden = -1 Then
+c26.FontName = "Playing Cards"
+c26.Caption = cardFont
+c26.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c26.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c26.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c26.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c26.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c26.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c26.FontName = "Greek Column"
+    c26.Caption = Chr(87)
+    c26.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c26_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c26_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c26
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c26_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c27_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 27
+If Hidden = -1 Then
+c27.FontName = "Playing Cards"
+c27.Caption = cardFont
+c27.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c27.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c27.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c27.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c27.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c27.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c27.FontName = "Greek Column"
+    c27.Caption = Chr(87)
+    c27.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c27_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c27_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c27
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c27_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c28_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 28
+If Hidden = -1 Then
+c28.FontName = "Playing Cards"
+c28.Caption = cardFont
+c28.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c28.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c28.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c28.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c28.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c28.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c28.FontName = "Greek Column"
+    c28.Caption = Chr(87)
+    c28.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c28_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c28_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c28
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c28_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c29_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 29
+If Hidden = -1 Then
+c29.FontName = "Playing Cards"
+c29.Caption = cardFont
+c29.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c29.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c29.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c29.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c29.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c29.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c29.FontName = "Greek Column"
+    c29.Caption = Chr(87)
+    c29.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c29_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c29_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c29
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c29_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c3_Click()
+
+End Sub
+
+Private Sub c3_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 3
+If Hidden = -1 Then
+c3.FontName = "Playing Cards"
+c3.Caption = cardFont
+c3.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c3.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c3.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "H" Then c3.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c3.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c3.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c3.FontName = "Greek Column"
+    c3.Caption = Chr(87)
+    c3.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c3_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c3_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c3
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c3_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c30_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 30
+If Hidden = -1 Then
+c30.FontName = "Playing Cards"
+c30.Caption = cardFont
+c30.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c30.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c30.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c30.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c30.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c30.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c30.FontName = "Greek Column"
+    c30.Caption = Chr(87)
+    c30.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c30_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c30_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c30
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c30_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c31_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 31
+If Hidden = -1 Then
+c31.FontName = "Playing Cards"
+c31.Caption = cardFont
+c31.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c31.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c31.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c31.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c31.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c31.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c31.FontName = "Greek Column"
+    c31.Caption = Chr(87)
+    c31.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c31_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c31_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c31
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c31_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c32_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 32
+If Hidden = -1 Then
+c32.FontName = "Playing Cards"
+c32.Caption = cardFont
+c32.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c32.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c32.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c32.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c32.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c32.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c32.FontName = "Greek Column"
+    c32.Caption = Chr(87)
+    c32.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c32_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c32_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c32
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c32_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c33_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 33
+If Hidden = -1 Then
+c33.FontName = "Playing Cards"
+c33.Caption = cardFont
+c33.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c33.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c33.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c33.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c33.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c33.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c33.FontName = "Greek Column"
+    c33.Caption = Chr(87)
+    c33.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c33_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c33_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c33
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c33_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c34_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 34
+If Hidden = -1 Then
+c34.FontName = "Playing Cards"
+c34.Caption = cardFont
+c34.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c34.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c34.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c34.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c34.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c34.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c34.FontName = "Greek Column"
+    c34.Caption = Chr(87)
+    c34.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c34_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c34_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c34
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c34_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c35_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 35
+If Hidden = -1 Then
+c35.FontName = "Playing Cards"
+c35.Caption = cardFont
+c35.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c35.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c35.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c35.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c35.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c35.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c35.FontName = "Greek Column"
+    c35.Caption = Chr(87)
+    c35.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c35_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c35_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c35
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c35_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c36_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 36
+If Hidden = -1 Then
+c36.FontName = "Playing Cards"
+c36.Caption = cardFont
+c36.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c36.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c36.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c36.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c36.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c36.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c36.FontName = "Greek Column"
+    c36.Caption = Chr(87)
+    c36.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c36_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c36_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c36
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c36_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c37_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 37
+If Hidden = -1 Then
+c37.FontName = "Playing Cards"
+c37.Caption = cardFont
+c37.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c37.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c37.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c37.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c37.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c37.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c37.FontName = "Greek Column"
+    c37.Caption = Chr(87)
+    c37.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c37_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c37_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c37
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c37_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c38_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 38
+If Hidden = -1 Then
+c38.FontName = "Playing Cards"
+c38.Caption = cardFont
+c38.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c38.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c38.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c38.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c38.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c38.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c38.FontName = "Greek Column"
+    c38.Caption = Chr(87)
+    c38.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c38_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c38_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c38
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c38_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c39_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 39
+If Hidden = -1 Then
+c39.FontName = "Playing Cards"
+c39.Caption = cardFont
+c39.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c39.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c39.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c39.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c39.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c39.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c39.FontName = "Greek Column"
+    c39.Caption = Chr(87)
+    c39.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c39_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c39_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c39
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c39_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c4_Click()
+
+End Sub
+
+Private Sub c4_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 4
+If Hidden = -1 Then
+c4.FontName = "Playing Cards"
+c4.Caption = cardFont
+c4.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c4.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c4.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c4.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c4.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c4.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c4.FontName = "Greek Column"
+    c4.Caption = Chr(87)
+    c4.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c4_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c4_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c4
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c4_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c40_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 40
+If Hidden = -1 Then
+c40.FontName = "Playing Cards"
+c40.Caption = cardFont
+c40.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c40.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c40.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c40.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c40.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c40.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c40.FontName = "Greek Column"
+    c40.Caption = Chr(87)
+    c40.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c40_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c40_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c40
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c40_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c41_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 41
+If Hidden = -1 Then
+c41.FontName = "Playing Cards"
+c41.Caption = cardFont
+c41.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c41.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c41.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c41.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c41.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c41.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c41.FontName = "Greek Column"
+    c41.Caption = Chr(87)
+    c41.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c41_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c41_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c41
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c41_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c42_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 42
+If Hidden = -1 Then
+c42.FontName = "Playing Cards"
+c42.Caption = cardFont
+c42.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c42.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c42.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c42.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c42.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c42.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c42.FontName = "Greek Column"
+    c42.Caption = Chr(87)
+    c42.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c42_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c42_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c42
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c42_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c43_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 43
+If Hidden = -1 Then
+c43.FontName = "Playing Cards"
+c43.Caption = cardFont
+c43.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c43.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c43.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "H" Then c43.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c43.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c43.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c43.FontName = "Greek Column"
+    c43.Caption = Chr(87)
+    c43.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c43_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c43_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c43
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c43_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c44_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 44
+If Hidden = -1 Then
+c44.FontName = "Playing Cards"
+c44.Caption = cardFont
+c44.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c44.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c44.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "H" Then c44.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c44.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c44.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c44.FontName = "Greek Column"
+    c44.Caption = Chr(87)
+    c44.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c44_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c44_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c44
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c44_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c45_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 45
+If Hidden = -1 Then
+c45.FontName = "Playing Cards"
+c45.Caption = cardFont
+c45.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c45.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c45.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c45.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c45.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c45.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c45.FontName = "Greek Column"
+    c45.Caption = Chr(87)
+    c45.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c45_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c45_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c45
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c45_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c46_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 46
+If Hidden = -1 Then
+c46.FontName = "Playing Cards"
+c46.Caption = cardFont
+c46.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c46.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c46.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c46.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c46.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c46.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c46.FontName = "Greek Column"
+    c46.Caption = Chr(87)
+    c46.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c46_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c46_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c46
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c46_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c47_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 47
+If Hidden = -1 Then
+c47.FontName = "Playing Cards"
+c47.Caption = cardFont
+c47.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c47.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c47.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c47.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c47.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c47.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c47.FontName = "Greek Column"
+    c47.Caption = Chr(87)
+    c47.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c47_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c47_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c47
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c47_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c48_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 48
+If Hidden = -1 Then
+c48.FontName = "Playing Cards"
+c48.Caption = cardFont
+c48.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c48.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c48.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c48.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c48.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c48.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c48.FontName = "Greek Column"
+    c48.Caption = Chr(87)
+    c48.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c48_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c48_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c48
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c48_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c49_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 49
+If Hidden = -1 Then
+c49.FontName = "Playing Cards"
+c49.Caption = cardFont
+c49.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c49.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c49.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c49.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c49.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c49.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c49.FontName = "Greek Column"
+    c49.Caption = Chr(87)
+    c49.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c49_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c49_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c49
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c49_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c5_Click()
+
+End Sub
+
+Private Sub c5_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 5
+If Hidden = -1 Then
+c5.FontName = "Playing Cards"
+c5.Caption = cardFont
+c5.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c5.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c5.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c5.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c5.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c5.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c5.FontName = "Greek Column"
+    c5.Caption = Chr(87)
+    c5.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c5_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c5_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c5
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c5_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c50_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 50
+If Hidden = -1 Then
+c50.FontName = "Playing Cards"
+c50.Caption = cardFont
+c50.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c50.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c50.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c50.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c50.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c50.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c50.FontName = "Greek Column"
+    c50.Caption = Chr(87)
+    c50.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c50_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c50_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c50
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c50_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c51_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 51
+If Hidden = -1 Then
+c51.FontName = "Playing Cards"
+c51.Caption = cardFont
+c51.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c51.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c51.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c51.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c51.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c51.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c51.FontName = "Greek Column"
+    c51.Caption = Chr(87)
+    c51.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c51_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c51_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c51
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c51_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c52_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 52
+If Hidden = -1 Then
+c52.FontName = "Playing Cards"
+c52.Caption = cardFont
+c52.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c52.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c52.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c52.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c52.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c52.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c52.FontName = "Greek Column"
+    c52.Caption = Chr(87)
+    c52.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c52_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c52_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c52
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c52_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c53_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 53
+If Hidden = -1 Then
+c53.FontName = "Playing Cards"
+c53.Caption = cardFont
+c53.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c53.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c53.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c53.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c53.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c53.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c53.FontName = "Greek Column"
+    c53.Caption = Chr(87)
+    c53.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c53_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c53_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c53
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c53_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c54_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 54
+If Hidden = -1 Then
+c54.FontName = "Playing Cards"
+c54.Caption = cardFont
+c54.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c54.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c54.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c54.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c54.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c54.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c54.FontName = "Greek Column"
+    c54.Caption = Chr(87)
+    c54.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c54_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c54_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c54
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c54_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c6_Click()
+
+End Sub
+
+Private Sub c6_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 6
+If Hidden = -1 Then
+c6.FontName = "Playing Cards"
+c6.Caption = cardFont
+c6.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c6.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c6.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c6.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c6.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c6.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c6.FontName = "Greek Column"
+    c6.Caption = Chr(87)
+    c6.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c6_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+   XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c6_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        
+        With c6
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+        
+    End If
+   
+End Sub
+
+Private Sub c6_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+ mseDown = False
+End Sub
+
+Private Sub c7_Click()
+
+End Sub
+
+Private Sub c7_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 7
+If Hidden = -1 Then
+c7.FontName = "Playing Cards"
+c7.Caption = cardFont
+c7.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c7.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c7.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c7.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c7.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c7.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c7.FontName = "Greek Column"
+    c7.Caption = Chr(87)
+    c7.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c7_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c7_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c7
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c7_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c8_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 8
+If Hidden = -1 Then
+c8.FontName = "Playing Cards"
+c8.Caption = cardFont
+c8.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c8.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c8.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c8.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c8.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c8.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c8.FontName = "Greek Column"
+    c8.Caption = Chr(87)
+    c8.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c8_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c8_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c8
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c8_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub c9_DblClick(Cancel As Integer)
+DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 9
+If Hidden = -1 Then
+c9.FontName = "Playing Cards"
+c9.Caption = cardFont
+c9.ForeColor = RGB(0, 0, 0)
+    If Mid([Card], 2, 1) = "H" Then c9.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 2, 1) = "D" Then c9.ForeColor = RGB(255, 0, 0)
+     If Mid([Card], 3, 1) = "H" Then c9.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 3, 1) = "D" Then c9.ForeColor = RGB(255, 0, 0)
+    If Mid([Card], 1, 2) = "J2" Then c9.ForeColor = RGB(255, 0, 0)
+    Hidden = 0
+    Exit Sub
+    End If
+If Hidden = 0 Then
+    c9.FontName = "Greek Column"
+    c9.Caption = Chr(87)
+    c9.ForeColor = RGB(0, 0, 0)
+    Hidden = -1
+    End If
+End Sub
+
+Private Sub c9_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+XPos = X
+    Ypos = Y
+    mseDown = True
+End Sub
+
+Private Sub c9_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim newLeft As Integer
+Dim newTop As Integer
+
+    'move horizontally
+    If mseDown Then
+        With c9
+            newLeft = .Left
+            newTop = .Top
+            'check within sizing parameters
+            If .Left + X - XPos > 0 And .Left + .Width + X - XPos < InsideWidth Then newLeft = .Left + X - XPos
+            If .Top + Y - Ypos > 0 And .Top + .Height + Y - Ypos < InsideHeight Then newTop = .Top + Y - Ypos
+            .Move newLeft, newTop, .Width, .Height
+        End With
+    End If
+End Sub
+
+Private Sub c9_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+mseDown = False
+End Sub
+
+Private Sub Command77_Click()
+'Shuffling
+Dim db As Database
+Dim strADDtbl As String
+Dim rst As Object
+Dim rst2 As Object
+Dim rst3 As Object
+Dim rst4 As Object
+Dim randomRecord As Integer
+Dim boxname As String
+Dim i As Integer
+Dim j As Integer
+Dim rstC As Integer
+DoCmd.GoToRecord , , acFirst
+Set db = CurrentDb
+' CREATE DECK TABLE
+DoCmd.CopyObject , "Deck", acTable, "StandardDeck"
+'CREATE SHUFFLED DECK TABLES
+    strADDtbl = "CREATE TABLE ShufflDeck " & "(CID AUTOINCREMENT PRIMARY KEY, Card CHAR, CardFont CHAR);"
+    DoCmd.RunSQL strADDtbl, False
+    DoEvents
+    Application.RefreshDatabaseWindow
+
+'Open DECK TABLE AND RANDOMIZE IN THE NUMBER OF EXISTING FIELDS - SELECT A CARD AND APPEND TO SHUFFLED
+monitor.Caption = "SHUFFLE..."
+    For i = 1 To 52 '54 to include Jokers
+randomnum:
+    Randomize
+    'Me.Refresh
+    'Me.Recalc
+    Set rst = db.OpenRecordset("Deck", dbOpenDynaset)
+    Set rst2 = db.OpenRecordset("ShufflDeck", dbOpenDynaset)
+    rst.MoveLast
+    rst.MoveFirst
+    rstC = rst.RecordCount
+    'rstC = rstC * 3
+    monitor.Caption = "cards from deck:" & rst.RecordCount
+    'randomRecord = Int((rstC - 1 + 1) * Rnd() + 1)
+    'randomRecord = Int(Rnd(rst.CardID) * rstC) + 1
+    randomRecord = Int(Rnd * rstC) + Int(Rnd * rstC) + Int(Rnd * rstC) + Int(Rnd * rstC) + Int(Rnd * rstC)
+    'monitor.Caption = monitor.Caption + "Rnd :" & randomRecord
+    rst.FindFirst "[CardID] = " & randomRecord
+    If rst.NoMatch Then
+        'monitor.Caption = "Record not found"
+        'GoTo randomnum
+    End If
+    'rst.Index = "CID"
+    'rst.Seek "=", randomRecord
+    
+    'Pause 1
+    If randomRecord > 52 Then GoTo randomnum '54 if you want Jokers inside too
+    'monitor.Caption = rst.CardID & " " & randomRecord & " " & Card
+    With rst2
+     .AddNew
+     !Card = rst.Card
+     !cardFont = rst.cardFont
+'Reveals Card While Shuffling (for testing purposes)
+     'boxname = "c" & i
+     'Me(boxname).FontName = "Playing Cards"
+     'Me(boxname).Caption = rst.cardFont
+     'Me(boxname).ForeColor = RGB(0, 0, 0)
+        'If Mid(rst.Card, 2, 1) = "H" Then Me(boxname).ForeColor = RGB(255, 0, 0)
+        'If Mid(rst.Card, 2, 1) = "D" Then Me(boxname).ForeColor = RGB(255, 0, 0)
+        'If Mid(rst.Card, 2, 1) = "2" Then Me(boxname).ForeColor = RGB(255, 0, 0)
+    'Updates Screen Fields
+     Me.Card = rst.Card
+     Me.cardFont = rst.cardFont
+     DoCmd.GoToRecord , , acNext
+     'MsgBox rst.Card
+ 'Deletes card from Original Deck
+    rst.Delete
+     .Update
+     .Bookmark = .LastModified
+     .Close
+    End With
+    Next i
+'End With
+Set rst2 = Nothing
+rst.Close
+Set rst = Nothing
+db.Close
+Set db = Nothing
+'DeleteTempTables
+'DoCmd.DeleteObject acTable, "ShufflD2"
+DoCmd.DeleteObject acTable, "ShufflDeck"
+DoCmd.DeleteObject acTable, "Deck"
+Me.Refresh
+Randomize (Now())
+monitor.Caption = "Ready!"
+End Sub
+
+
+Private Sub Command79_Click()
+
+End Sub
+
+Private Sub Command88_Click()
+fontz = Asc(c1.Caption)
+fontz = fontz + 1
+If fontz = 126 Then fontz = 32
+Dim j As Integer
+Dim boxname As String
+For j = 1 To 54
+boxname = "c" & j
+     Me(boxname).FontName = "Greek Column"
+     Me(boxname).Caption = Chr(fontz)
+     Me(boxname).ForeColor = RGB(0, 0, 0)
+     monitor.Caption = fontz
+Next
+
+End Sub
+
+Private Sub Command89_Click()
+
+Dim j As Integer
+Dim boxname As String
+For j = 1 To 54
+boxname = "c" & j
+     Me(boxname).FontName = "Greek Column"
+     Me(boxname).Caption = Chr(87)
+     Me(boxname).ForeColor = RGB(0, 0, 0)
+Next
+End Sub
+
+Private Sub Command95_Click()
+Dim k As Integer
+Dim StTop As Integer
+Dim StLeft As Integer
+Dim myobj As String
+
+StTop = 120
+StLeft = 8000
+
+For k = 1 To 52
+myobj = "c" & k
+Me(myobj).Top = StTop + k * 100
+Me(myobj).Left = StLeft
+Next k
+
+StTop = 1500
+StLeft = 100
+'1 card
+c1.Top = StTop
+c1.Left = StLeft
+    DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 1
+        c1.FontName = "Playing Cards"
+        c1.Caption = cardFont
+        c1.ForeColor = RGB(0, 0, 0)
+            If Mid([Card], 2, 1) = "H" Then c1.ForeColor = RGB(255, 0, 0)
+            If Mid([Card], 2, 1) = "D" Then c1.ForeColor = RGB(255, 0, 0)
+            If Mid([Card], 1, 2) = "J2" Then c1.ForeColor = RGB(255, 0, 0)
+        Hidden = 0
+'2 cards
+StLeft = StLeft + 1000
+c2.Top = StTop
+c2.Left = StLeft
+c3.Top = StTop + 500
+c3.Left = StLeft
+ DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 3
+        c3.FontName = "Playing Cards"
+        c3.Caption = cardFont
+        c3.ForeColor = RGB(0, 0, 0)
+            If Mid([Card], 2, 1) = "H" Then c3.ForeColor = RGB(255, 0, 0)
+            If Mid([Card], 2, 1) = "D" Then c3.ForeColor = RGB(255, 0, 0)
+            If Mid([Card], 1, 2) = "J2" Then c3.ForeColor = RGB(255, 0, 0)
+        Hidden = 0
+'3 cards
+StLeft = StLeft + 1000
+c4.Top = StTop
+c4.Left = StLeft
+c5.Top = StTop + 500
+c5.Left = StLeft
+c6.Top = StTop + 1000
+c6.Left = StLeft
+ DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 6
+        c6.FontName = "Playing Cards"
+        c6.Caption = cardFont
+        c6.ForeColor = RGB(0, 0, 0)
+            If Mid([Card], 2, 1) = "H" Then c6.ForeColor = RGB(255, 0, 0)
+            If Mid([Card], 2, 1) = "D" Then c6.ForeColor = RGB(255, 0, 0)
+            If Mid([Card], 1, 2) = "J2" Then c6.ForeColor = RGB(255, 0, 0)
+        Hidden = 0
+'4 cards
+StLeft = StLeft + 1000
+c7.Top = StTop
+c7.Left = StLeft
+c8.Top = StTop + 500
+c8.Left = StLeft
+c9.Top = StTop + 1000
+c9.Left = StLeft
+c10.Top = StTop + 1500
+c10.Left = StLeft
+ DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 10
+        c10.FontName = "Playing Cards"
+        c10.Caption = cardFont
+        c10.ForeColor = RGB(0, 0, 0)
+            If Mid([Card], 2, 1) = "H" Then c10.ForeColor = RGB(255, 0, 0)
+            If Mid([Card], 2, 1) = "D" Then c10.ForeColor = RGB(255, 0, 0)
+            If Mid([Card], 1, 2) = "J2" Then c10.ForeColor = RGB(255, 0, 0)
+        Hidden = 0
+'5 cards
+StLeft = StLeft + 1000
+c11.Top = StTop
+c11.Left = StLeft
+c12.Top = StTop + 500
+c12.Left = StLeft
+c13.Top = StTop + 1000
+c13.Left = StLeft
+c14.Top = StTop + 1500
+c14.Left = StLeft
+c15.Top = StTop + 2000
+c15.Left = StLeft
+ DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 15
+        c15.FontName = "Playing Cards"
+        c15.Caption = cardFont
+        c15.ForeColor = RGB(0, 0, 0)
+            If Mid([Card], 2, 1) = "H" Then c15.ForeColor = RGB(255, 0, 0)
+            If Mid([Card], 2, 1) = "D" Then c15.ForeColor = RGB(255, 0, 0)
+            If Mid([Card], 1, 2) = "J2" Then c15.ForeColor = RGB(255, 0, 0)
+        Hidden = 0
+'6 cards
+StLeft = StLeft + 1000
+c16.Top = StTop
+c16.Left = StLeft
+c17.Top = StTop + 500
+c17.Left = StLeft
+c18.Top = StTop + 1000
+c18.Left = StLeft
+c19.Top = StTop + 1500
+c19.Left = StLeft
+c20.Top = StTop + 2000
+c20.Left = StLeft
+c21.Top = StTop + 2500
+c21.Left = StLeft
+ DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 21
+        c21.FontName = "Playing Cards"
+        c21.Caption = cardFont
+        c21.ForeColor = RGB(0, 0, 0)
+            If Mid([Card], 2, 1) = "H" Then c21.ForeColor = RGB(255, 0, 0)
+            If Mid([Card], 2, 1) = "D" Then c21.ForeColor = RGB(255, 0, 0)
+            If Mid([Card], 1, 2) = "J2" Then c21.ForeColor = RGB(255, 0, 0)
+        Hidden = 0
+'7 cards
+StLeft = StLeft + 1000
+c22.Top = StTop
+c22.Left = StLeft
+c23.Top = StTop + 500
+c23.Left = StLeft
+c24.Top = StTop + 1000
+c24.Left = StLeft
+c25.Top = StTop + 1500
+c25.Left = StLeft
+c26.Top = StTop + 2000
+c26.Left = StLeft
+c27.Top = StTop + 2500
+c27.Left = StLeft
+c28.Top = StTop + 3000
+c28.Left = StLeft
+ DoCmd.GoToRecord acDataForm, "Deck", acGoTo, 28
+        c28.FontName = "Playing Cards"
+        c28.Caption = cardFont
+        c28.ForeColor = RGB(0, 0, 0)
+            If Mid([Card], 2, 1) = "H" Then c28.ForeColor = RGB(255, 0, 0)
+            If Mid([Card], 2, 1) = "D" Then c28.ForeColor = RGB(255, 0, 0)
+            If Mid([Card], 1, 2) = "J2" Then c28.ForeColor = RGB(255, 0, 0)
+        Hidden = 0
+End Sub
